@@ -17,12 +17,13 @@ import com.slavko.processor.model.Transaction;
 public class XLSXParser {
 
 	public static StringBuilder resultInfo;
+	public static StringBuilder ignoredInfo;
 
 	public static List<Transaction> getTransactionsList(File transactionsFile) {
 
 		List<Transaction> result = new ArrayList<>();
 		resultInfo = new StringBuilder("RESULT\r\n\r\n");
-		StringBuilder ignoredInfo = new StringBuilder("IGNORED ROWS:\r\n");
+		ignoredInfo = new StringBuilder("");
 		int successCounter = 0;
 
 		try {
@@ -118,8 +119,7 @@ public class XLSXParser {
 		} catch (IOException e) {
 			return result;
 		}
-		resultInfo.append("NUMBER OF SUCCESSFUL TRANSACTIONS: " + successCounter + "\r\n\r\n");
-		resultInfo.append(ignoredInfo);
+		resultInfo.append("Number of successful transactions: " + successCounter + "\r\n\r\n");
 
 		return result;
 	}

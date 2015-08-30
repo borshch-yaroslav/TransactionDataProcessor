@@ -1,13 +1,12 @@
 package com.slavko.processor.tools;
 
 import java.util.Currency;
-import java.util.Set;
 
 public class FieldValidator {
 
 	public static boolean validateAccount(String account) {
 
-		if (account instanceof String && account.matches("^[a-zA-Z0-9_]*$"))
+		if (account instanceof String && account.matches("^[a-zA-Z0-9_\"]*$"))
 			return true;
 
 		else
@@ -24,7 +23,7 @@ public class FieldValidator {
 
 	public static boolean validateCurrencyCode(String currencyCode) {
 		
-		if (Currency.getAvailableCurrencies().toString().contains(currencyCode)){
+		if (currencyCode.length() == 3 && Currency.getAvailableCurrencies().toString().contains(currencyCode)){
 			return true;
 		}
 		else

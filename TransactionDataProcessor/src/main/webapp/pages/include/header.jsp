@@ -12,9 +12,8 @@
 
 			<div class="my-logo">
 				<h2 class="ui header">
-					<img src="resources/images/logo.png" class="ui circular image">
+					<img src="resources/images/logo.jpg" class="ui circular image">
 				</h2>
-				<h3>Transaction data processor</h3>
 			</div>
 
 		</a>

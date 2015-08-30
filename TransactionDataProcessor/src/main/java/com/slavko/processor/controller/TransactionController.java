@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.slavko.processor.model.Transaction;
 import com.slavko.processor.service.TransactionService;
+import com.slavko.processor.tools.CSVParser;
 import com.slavko.processor.tools.FileHandler;
 import com.slavko.processor.tools.XLSXParser;
 
@@ -22,6 +23,7 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionService;
 	private String message;
+	private String errors;
 	
 	@RequestMapping(value = "/addTransaction", method = RequestMethod.POST)
 	public String addTransaction(@ModelAttribute Transaction transaction) {
@@ -41,16 +43,18 @@ public class TransactionController {
 
 			case "xlsx":
 				transactionService.addTransactionsFromXLSX(uploadedFile);
+				message = XLSXParser.resultInfo.toString();
+				errors = XLSXParser.ignoredInfo.toString();
 				break;
 
 			case "csv":
 				transactionService.addTransactionsFromCSV(uploadedFile);
+				message = CSVParser.resultInfo.toString();
+				errors = CSVParser.ignoredInfo.toString();
 				break;
 			}
 
 			uploadedFile.delete();
-			
-			message = XLSXParser.resultInfo.toString();
 			
 			
 			return "redirect:/finish";
@@ -64,6 +68,7 @@ public class TransactionController {
 	public String finishTransaction(Model model) {
 		model.addAttribute("transactions", transactionService.getAll());
 	    model.addAttribute("message", message);
+	    model.addAttribute("errors", errors);
 	    return "index";
 	}
 	
@@ -76,6 +81,6 @@ public class TransactionController {
 	@RequestMapping(value = "/removeTransaction", method = RequestMethod.POST)
 	public String removePerson(@ModelAttribute Transaction transaction) {
 		transactionService.remove(transaction);
-		return "redirect:/";
+		return "redirect:/transactions";
 	}
 }

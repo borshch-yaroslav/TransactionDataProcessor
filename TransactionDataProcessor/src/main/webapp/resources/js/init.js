@@ -9,6 +9,8 @@ $('document').ready(function() {
 			touch : 50
 		}
 	});
+	
+	$('.ui.accordion').accordion();
 });
 
 $(document).on('click', 'a[href]', function(e) {

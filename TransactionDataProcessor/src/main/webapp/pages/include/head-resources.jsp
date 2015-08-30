@@ -19,5 +19,6 @@
 <script src="<c:url value="resources/js/init.js"/>"></script>
 
 <title>Transaction data processor</title>
+<link rel="shortcut icon" type="image/jpg" href="resources/images/logo.jpg"/>
 
 </head>

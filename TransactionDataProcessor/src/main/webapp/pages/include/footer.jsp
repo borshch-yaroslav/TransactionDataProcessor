@@ -10,7 +10,7 @@ footer {
 }
 
 footer.page-footer {
-	margin-top: 50px;
+	margin-top: 10px;
 	padding-top: 20px;
 	background-color: #ee6e73;
 }
@@ -30,7 +30,7 @@ footer.page-footer .footer-copyright {
 		style="background: grey; line-height: 25px;">
 		<div class="ui container center aligned">
 			<p style="margin-top: 1em;" style="color:white">2015 Copyright by
-				Web Store Slavko</p>
+				Slavko</p>
 		</div>
 	</div>
 </footer>

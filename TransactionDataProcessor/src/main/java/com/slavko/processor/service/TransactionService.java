@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.slavko.processor.model.Transaction;
+import com.slavko.processor.tools.CSVParser;
 import com.slavko.processor.tools.XLSXParser;
-
 
 @Service
 public class TransactionService {
@@ -50,7 +50,18 @@ public class TransactionService {
 
 	@Transactional
 	public void addTransactionsFromCSV(File transactionsFile) {
+		List<Transaction> transactions = CSVParser.getTransactionsList(transactionsFile);
 
+		for (Transaction transaction : transactions) {
+
+			entityManager
+					.createNativeQuery(
+							"INSERT INTO transaction (account, description, currency_code, amount) VALUES(:account, :description, :currencyCode, :amount)")
+					.setParameter("account", transaction.getAccount())
+					.setParameter("description", transaction.getDescription())
+					.setParameter("currencyCode", transaction.getCurrencyCode())
+					.setParameter("amount", transaction.getAmount()).executeUpdate();
+		}
 	}
 
 	@Transactional
