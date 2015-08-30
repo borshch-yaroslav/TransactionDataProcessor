@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+body {
+	background: #999;
+}
+
+.my-main {
+	min-height: 84.5%;
+}
+
+#my-header .menu, #my-header .ui.header, #my-header h3 {
+	margin: 0;
+}
+
+
+.ui.menu .item {
+	text-align: center;
+}
+
+.my-container {
+	margin-top: 3em;
+}
+
+.my-container .my-header {
+	color: white;
+}
